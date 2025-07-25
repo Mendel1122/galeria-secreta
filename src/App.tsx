@@ -160,9 +160,17 @@ function App() {
       setIsAuthModalOpen(true);
       return;
     }
-    // Implement messaging functionality
-    console.log('Contact model:', model.stage_name);
-    alert('Funcionalidade de mensagens será implementada em breve!');
+    
+    // WhatsApp contact functionality
+    if (model.whatsapp) {
+      const message = encodeURIComponent(
+        `Olá ${model.stage_name}! Vi o seu perfil na Galeria Secreta e gostaria de saber mais sobre os seus serviços.`
+      );
+      const whatsappNumber = model.whatsapp.replace(/[^\d]/g, '');
+      window.open(`https://wa.me/${whatsappNumber}?text=${message}`, '_blank');
+    } else {
+      alert('Contacto via WhatsApp não disponível para esta modelo.');
+    }
   };
 
   const handleBook = (model: Model) => {
@@ -326,7 +334,8 @@ function App() {
             <div className="hidden md:flex items-center space-x-6">
               <button
                 onClick={() => setShowApplicationForm(true)}
-                className="bg-primary-600 text-white px-4 py-2 rounded-lg hover:bg-primary-700 transition-colors font-medium"
+                className="bg-primary-600 text-white px-4 py-2 rounded-lg hover:bg-primary-700 transition-colors font-medium cursor-pointer"
+                type="button"
               >
                 Quero Fazer Parte
               </button>
@@ -407,7 +416,8 @@ function App() {
                       setAuthMode('login');
                       setIsAuthModalOpen(true);
                     }}
-                    className="text-gray-600 hover:text-gray-900 transition-colors"
+                    className="text-gray-600 hover:text-gray-900 transition-colors cursor-pointer"
+                    type="button"
                   >
                     Entrar
                   </button>
@@ -416,7 +426,8 @@ function App() {
                       setAuthMode('signup');
                       setIsAuthModalOpen(true);
                     }}
-                    className="bg-gray-200 text-gray-800 px-4 py-2 rounded-lg hover:bg-gray-300 transition-colors"
+                    className="bg-gray-200 text-gray-800 px-4 py-2 rounded-lg hover:bg-gray-300 transition-colors cursor-pointer"
+                    type="button"
                   >
                     Criar Conta
                   </button>
@@ -428,7 +439,8 @@ function App() {
             <div className="md:hidden">
               <button
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className="text-gray-600 hover:text-gray-900"
+                className="text-gray-600 hover:text-gray-900 cursor-pointer"
+                type="button"
               >
                 {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
               </button>
@@ -444,7 +456,8 @@ function App() {
                     setShowApplicationForm(true);
                     setIsMobileMenuOpen(false);
                   }}
-                  className="block w-full text-left px-4 py-2 text-gray-600 hover:bg-gray-100"
+                  className="block w-full text-left px-4 py-2 text-gray-600 hover:bg-gray-100 cursor-pointer"
+                  type="button"
                 >
                   Quero Fazer Parte
                 </button>
@@ -457,7 +470,8 @@ function App() {
                         handleLogout();
                         setIsMobileMenuOpen(false);
                       }}
-                      className="block w-full text-left px-4 py-2 text-gray-600 hover:bg-gray-100"
+                      className="block w-full text-left px-4 py-2 text-gray-600 hover:bg-gray-100 cursor-pointer"
+                      type="button"
                     >
                       Sair
                     </button>
@@ -470,7 +484,8 @@ function App() {
                         setIsAuthModalOpen(true);
                         setIsMobileMenuOpen(false);
                       }}
-                      className="block w-full text-left px-4 py-2 text-gray-600 hover:bg-gray-100"
+                      className="block w-full text-left px-4 py-2 text-gray-600 hover:bg-gray-100 cursor-pointer"
+                      type="button"
                     >
                       Entrar
                     </button>
@@ -480,7 +495,8 @@ function App() {
                         setIsAuthModalOpen(true);
                         setIsMobileMenuOpen(false);
                       }}
-                      className="block w-full text-left px-4 py-2 text-gray-600 hover:bg-gray-100"
+                      className="block w-full text-left px-4 py-2 text-gray-600 hover:bg-gray-100 cursor-pointer"
+                      type="button"
                     >
                       Criar Conta
                     </button>
@@ -505,13 +521,15 @@ function App() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <button
               onClick={() => setShowApplicationForm(true)}
-              className="bg-yellow-400 text-gray-900 px-8 py-3 rounded-lg font-semibold hover:bg-yellow-300 transition-colors"
+              className="bg-yellow-400 text-gray-900 px-8 py-3 rounded-lg font-semibold hover:bg-yellow-300 transition-colors cursor-pointer"
+              type="button"
             >
               Quero Fazer Parte
             </button>
             <button
               onClick={() => document.getElementById('models')?.scrollIntoView({ behavior: 'smooth' })}
-              className="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-primary-600 transition-colors"
+              className="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-primary-600 transition-colors cursor-pointer"
+              type="button"
             >
               Ver Modelos
             </button>
@@ -599,7 +617,8 @@ function App() {
               <h2 className="text-2xl font-bold text-gray-900">Candidatura para Modelo</h2>
               <button
                 onClick={() => setShowApplicationForm(false)}
-                className="text-gray-400 hover:text-gray-600 transition-colors"
+                className="text-gray-400 hover:text-gray-600 transition-colors cursor-pointer"
+                type="button"
               >
                 <X className="w-6 h-6" />
               </button>
@@ -625,7 +644,8 @@ function App() {
                 <p className="text-gray-600 mb-4">{applicationMessage}</p>
                 <button
                   onClick={() => setApplicationStatus('idle')}
-                  className="bg-primary-600 text-white px-6 py-2 rounded-lg hover:bg-primary-700 transition-colors"
+                  className="bg-primary-600 text-white px-6 py-2 rounded-lg hover:bg-primary-700 transition-colors cursor-pointer"
+                  type="button"
                 >
                   Tentar Novamente
                 </button>
@@ -855,14 +875,14 @@ function App() {
                   <button
                     type="button"
                     onClick={() => setShowApplicationForm(false)}
-                    className="flex-1 px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors"
+                    className="flex-1 px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors cursor-pointer"
                   >
                     Cancelar
                   </button>
                   <button
                     type="submit"
                     disabled={applicationStatus === 'submitting'}
-                    className="flex-1 bg-primary-600 text-white py-2 px-4 rounded-lg hover:bg-primary-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors font-medium"
+                    className="flex-1 bg-primary-600 text-white py-2 px-4 rounded-lg hover:bg-primary-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors font-medium cursor-pointer"
                   >
                     {applicationStatus === 'submitting' ? 'Enviando...' : 'Enviar Candidatura'}
                   </button>

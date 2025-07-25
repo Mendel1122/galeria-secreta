@@ -106,7 +106,8 @@ export const ProfileModal: React.FC<ProfileModalProps> = ({
             </div>
             <button
               onClick={onClose}
-              className="text-white hover:text-gray-200 transition-colors"
+              className="text-white hover:text-gray-200 transition-colors cursor-pointer"
+              type="button"
             >
               <X className="w-6 h-6" />
             </button>
@@ -118,11 +119,12 @@ export const ProfileModal: React.FC<ProfileModalProps> = ({
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id as any)}
-                className={`flex-1 py-3 px-4 text-sm font-medium transition-colors flex items-center justify-center gap-2 ${
+                className={`flex-1 py-3 px-4 text-sm font-medium transition-colors flex items-center justify-center gap-2 cursor-pointer ${
                   activeTab === tab.id
                     ? 'bg-white text-primary-600 border-b-2 border-primary-600'
                     : 'text-gray-600 hover:text-gray-900'
                 }`}
+                type="button"
               >
                 <span>{tab.icon}</span>
                 {tab.label}
@@ -248,6 +250,14 @@ export const ProfileModal: React.FC<ProfileModalProps> = ({
                         key={index}
                         className="aspect-square rounded-lg overflow-hidden cursor-pointer hover:opacity-90 transition-opacity"
                         onClick={() => openImageFullscreen(photo)}
+                        role="button"
+                        tabIndex={0}
+                        onKeyDown={(e) => {
+                          if (e.key === 'Enter' || e.key === ' ') {
+                            e.preventDefault();
+                            openImageFullscreen(photo);
+                          }
+                        }}
                       >
                         <img
                           src={photo}
@@ -419,7 +429,8 @@ export const ProfileModal: React.FC<ProfileModalProps> = ({
             <div className="flex gap-3">
               <button
                 onClick={handleWhatsAppContact}
-                className="flex-1 bg-green-600 text-white py-3 px-4 rounded-lg hover:bg-green-700 transition-colors font-medium flex items-center justify-center gap-2"
+                className="flex-1 bg-green-600 text-white py-3 px-4 rounded-lg hover:bg-green-700 transition-colors font-medium flex items-center justify-center gap-2 cursor-pointer"
+                type="button"
               >
                 <Phone className="w-5 h-5" />
                 WhatsApp
@@ -427,7 +438,8 @@ export const ProfileModal: React.FC<ProfileModalProps> = ({
               
               <button
                 onClick={() => onContact(model)}
-                className="flex-1 bg-blue-600 text-white py-3 px-4 rounded-lg hover:bg-blue-700 transition-colors font-medium flex items-center justify-center gap-2"
+                className="flex-1 bg-blue-600 text-white py-3 px-4 rounded-lg hover:bg-blue-700 transition-colors font-medium flex items-center justify-center gap-2 cursor-pointer"
+                type="button"
               >
                 <MessageCircle className="w-5 h-5" />
                 Mensagem
@@ -435,7 +447,8 @@ export const ProfileModal: React.FC<ProfileModalProps> = ({
               
               <button
                 onClick={() => onBook(model)}
-                className="flex-1 bg-primary-600 text-white py-3 px-4 rounded-lg hover:bg-primary-700 transition-colors font-medium flex items-center justify-center gap-2"
+                className="flex-1 bg-primary-600 text-white py-3 px-4 rounded-lg hover:bg-primary-700 transition-colors font-medium flex items-center justify-center gap-2 cursor-pointer"
+                type="button"
               >
                 <Calendar className="w-5 h-5" />
                 Reservar
@@ -459,7 +472,8 @@ export const ProfileModal: React.FC<ProfileModalProps> = ({
             />
             <button
               onClick={closeImageFullscreen}
-              className="absolute top-4 right-4 bg-black bg-opacity-50 text-white p-2 rounded-full hover:bg-opacity-70 transition-all"
+             className="absolute top-4 right-4 bg-black bg-opacity-50 text-white p-2 rounded-full hover:bg-opacity-70 transition-all cursor-pointer"
+             type="button"
             >
               <X className="w-6 h-6" />
             </button>

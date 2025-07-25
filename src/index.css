@@ -100,6 +100,35 @@ html {
   background: var(--primary-700);
 }
 
+/* Ensure all buttons are clickable */
+button {
+  cursor: pointer !important;
+  pointer-events: auto !important;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+button:disabled {
+  cursor: not-allowed !important;
+  pointer-events: auto !important;
+}
+
+/* Ensure clickable elements have proper cursor */
+.cursor-pointer {
+  cursor: pointer !important;
+  pointer-events: auto !important;
+}
+
+/* Fix for touch devices */
+@media (hover: none) and (pointer: coarse) {
+  button, .cursor-pointer {
+    cursor: pointer !important;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0.1);
+  }
+}
+
 /* Animation utilities */
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(20px); }
@@ -113,6 +142,8 @@ html {
 /* Model card hover effects */
 .model-card {
   transition: all 0.3s ease;
+  cursor: pointer;
+  pointer-events: auto;
 }
 
 .model-card:hover {
@@ -124,6 +155,8 @@ html {
 .btn-hover-effect {
   position: relative;
   overflow: hidden;
+  cursor: pointer;
+  pointer-events: auto;
 }
 
 .btn-hover-effect::before {

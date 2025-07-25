@@ -23,32 +23,39 @@ export const ModelCard: React.FC<ModelCardProps> = ({
 }) => {
   const handleWhatsAppContact = (e: React.MouseEvent) => {
     e.stopPropagation();
+    e.preventDefault();
     if (model.whatsapp) {
       const message = encodeURIComponent(
         `Olá ${model.stage_name}! Vi o seu perfil na Galeria Secreta e gostaria de saber mais sobre os seus serviços.`
       );
       const whatsappNumber = model.whatsapp.replace(/[^\d]/g, '');
       window.open(`https://wa.me/${whatsappNumber}?text=${message}`, '_blank');
+    } else {
+      alert('WhatsApp não disponível para esta modelo.');
     }
   };
 
   const handleViewProfile = (e: React.MouseEvent) => {
     e.stopPropagation();
+    e.preventDefault();
     onViewProfile(model);
   };
 
   const handleContact = (e: React.MouseEvent) => {
     e.stopPropagation();
+    e.preventDefault();
     onContact(model);
   };
 
   const handleBook = (e: React.MouseEvent) => {
     e.stopPropagation();
+    e.preventDefault();
     onBook(model);
   };
 
   const handleFavorite = (e: React.MouseEvent) => {
     e.stopPropagation();
+    e.preventDefault();
     if (onFavorite) {
       onFavorite(model);
     }
@@ -86,22 +93,25 @@ export const ModelCard: React.FC<ModelCardProps> = ({
           <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex gap-2">
             <button
               onClick={handleViewProfile}
-              className="bg-white text-gray-900 p-2 rounded-full hover:bg-gray-100 transition-colors"
+              className="bg-white text-gray-900 p-2 rounded-full hover:bg-gray-100 transition-colors cursor-pointer"
               title="Ver Perfil"
+              type="button"
             >
               <Eye className="w-5 h-5" />
             </button>
             <button
               onClick={handleWhatsAppContact}
-              className="bg-green-600 text-white p-2 rounded-full hover:bg-green-700 transition-colors"
+              className="bg-green-600 text-white p-2 rounded-full hover:bg-green-700 transition-colors cursor-pointer"
               title="WhatsApp"
+              type="button"
             >
               <Phone className="w-5 h-5" />
             </button>
             <button
               onClick={handleContact}
-              className="bg-blue-600 text-white p-2 rounded-full hover:bg-blue-700 transition-colors"
+              className="bg-blue-600 text-white p-2 rounded-full hover:bg-blue-700 transition-colors cursor-pointer"
               title="Mensagem"
+              type="button"
             >
               <MessageCircle className="w-5 h-5" />
             </button>
@@ -135,8 +145,9 @@ export const ModelCard: React.FC<ModelCardProps> = ({
         {currentUser && (
           <button
             onClick={handleFavorite}
-            className="absolute bottom-4 right-4 bg-black bg-opacity-50 p-2 rounded-full hover:bg-opacity-70 transition-all"
+            className="absolute bottom-4 right-4 bg-black bg-opacity-50 p-2 rounded-full hover:bg-opacity-70 transition-all cursor-pointer"
             title={isFavorite ? "Remover dos favoritos" : "Adicionar aos favoritos"}
+            type="button"
           >
             <Heart 
               className={`w-4 h-4 ${isFavorite ? 'text-red-500 fill-current' : 'text-white'}`} 
@@ -218,7 +229,8 @@ export const ModelCard: React.FC<ModelCardProps> = ({
         <div className="flex gap-2">
           <button
             onClick={handleViewProfile}
-            className="flex-1 bg-primary-600 text-white py-2 px-4 rounded-lg hover:bg-primary-700 transition-colors font-medium flex items-center justify-center gap-2"
+            className="flex-1 bg-primary-600 text-white py-2 px-4 rounded-lg hover:bg-primary-700 transition-colors font-medium flex items-center justify-center gap-2 cursor-pointer"
+            type="button"
           >
             <Eye className="w-4 h-4" />
             Ver Perfil
@@ -226,8 +238,9 @@ export const ModelCard: React.FC<ModelCardProps> = ({
           
           <button
             onClick={handleBook}
-            className="bg-green-600 text-white py-2 px-4 rounded-lg hover:bg-green-700 transition-colors font-medium flex items-center justify-center gap-2"
+            className="bg-green-600 text-white py-2 px-4 rounded-lg hover:bg-green-700 transition-colors font-medium flex items-center justify-center gap-2 cursor-pointer"
             title="Reservar"
+            type="button"
           >
             <Calendar className="w-4 h-4" />
             Reservar

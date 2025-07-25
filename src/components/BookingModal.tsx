@@ -183,7 +183,8 @@ export const BookingModal: React.FC<BookingModalProps> = ({
           </div>
           <button
             onClick={onClose}
-            className="text-gray-400 hover:text-gray-600 transition-colors"
+           className="text-gray-400 hover:text-gray-600 transition-colors cursor-pointer"
+           type="button"
           >
             <X className="w-6 h-6" />
           </button>
@@ -200,7 +201,8 @@ export const BookingModal: React.FC<BookingModalProps> = ({
             </p>
             <button
               onClick={onClose}
-              className="bg-primary-600 text-white px-6 py-2 rounded-lg hover:bg-primary-700 transition-colors"
+             className="bg-primary-600 text-white px-6 py-2 rounded-lg hover:bg-primary-700 transition-colors cursor-pointer"
+             type="button"
             >
               Fazer Login
             </button>
@@ -227,6 +229,14 @@ export const BookingModal: React.FC<BookingModalProps> = ({
                           : 'border-gray-200 hover:border-gray-300'
                       }`}
                       onClick={() => handleServiceSelect(modelService)}
+                     role="button"
+                     tabIndex={0}
+                     onKeyDown={(e) => {
+                       if (e.key === 'Enter' || e.key === ' ') {
+                         e.preventDefault();
+                         handleServiceSelect(modelService);
+                       }
+                     }}
                     >
                       <div className="flex items-center justify-between">
                         <div className="flex items-center">
@@ -393,7 +403,7 @@ export const BookingModal: React.FC<BookingModalProps> = ({
                 href={`https://wa.me/${model.whatsapp?.replace(/[^\d]/g, '')}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition-colors text-sm"
+                className="inline-flex items-center gap-2 bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition-colors text-sm cursor-pointer"
               >
                 <Phone className="w-4 h-4" />
                 WhatsApp: {model.whatsapp}
@@ -439,14 +449,14 @@ export const BookingModal: React.FC<BookingModalProps> = ({
               <button
                 type="button"
                 onClick={onClose}
-                className="flex-1 px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors"
+                className="flex-1 px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors cursor-pointer"
               >
                 Cancelar
               </button>
               <button
                 type="submit"
                 disabled={isSubmitting || !selectedService}
-                className="flex-1 bg-primary-600 text-white py-2 px-4 rounded-lg hover:bg-primary-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors font-medium"
+                className="flex-1 bg-primary-600 text-white py-2 px-4 rounded-lg hover:bg-primary-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors font-medium cursor-pointer"
               >
                 {isSubmitting ? 'Processando...' : 'Confirmar Reserva'}
               </button>
