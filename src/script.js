@@ -10,6 +10,3 @@ if (signupBtnScroll) {
         document.querySelector('#application')?.scrollIntoView({ behavior: 'smooth' });
     });
 }
-
-// Enhanced form auto-save
-initFormAutoSave();
