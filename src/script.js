@@ -1,4 +1,3 @@
-@@ .. @@
     // Enhanced page loading animation
     setTimeout(() => {
         document.body.classList.add('loaded');
