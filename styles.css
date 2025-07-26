@@ -120,6 +120,9 @@ p {
     transition: var(--transition);
     font-weight: 600;
     will-change: transform, opacity;
+    pointer-events: auto;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0.1);
 }
 
 .btn:hover {
@@ -296,6 +299,8 @@ p {
     justify-content: center;
     border-radius: 50%;
     transition: all 0.3s ease;
+    pointer-events: auto;
+    touch-action: manipulation;
 }
 
 .modal-close:hover {
@@ -380,6 +385,8 @@ p {
     position: relative;
     overflow: hidden;
     box-shadow: 0 4px 20px rgba(201, 168, 118, 0.3);
+    pointer-events: auto;
+    touch-action: manipulation;
 }
 
 .modal-form .btn:hover {
@@ -391,6 +398,7 @@ p {
     opacity: 0.7;
     cursor: not-allowed;
     transform: none;
+    pointer-events: auto;
 }
 
 .btn-loader {
@@ -440,6 +448,9 @@ p {
     text-decoration: none;
     font-weight: 500;
     transition: color 0.3s ease;
+    cursor: pointer;
+    pointer-events: auto;
+    touch-action: manipulation;
 }
 
 .switch-link:hover {
@@ -557,6 +568,9 @@ p {
     align-items: center;
     gap: 0.5rem;
     font-size: 0.9rem;
+    pointer-events: auto;
+    touch-action: manipulation;
+    min-height: 40px;
 }
 
 .nav-action-btn:hover {
@@ -580,6 +594,13 @@ p {
     flex-direction: column;
     cursor: pointer;
     gap: 4px;
+    pointer-events: auto;
+    touch-action: manipulation;
+    padding: 8px;
+    min-height: 40px;
+    min-width: 40px;
+    justify-content: center;
+    align-items: center;
 }
 
 .nav-toggle .bar {
@@ -652,11 +673,14 @@ p {
     transform: scale(0.8);
     transition: all 0.3s ease;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    pointer-events: auto;
+    touch-action: manipulation;
 }
 
 .scroll-top-btn.show {
     opacity: 1;
     transform: scale(1);
+    pointer-events: auto;
 }
 
 .scroll-top-btn:hover {
@@ -714,6 +738,13 @@ p {
     margin-left: 1rem;
     opacity: 0.7;
     transition: opacity 0.2s ease;
+    pointer-events: auto;
+    touch-action: manipulation;
+    min-height: 32px;
+    min-width: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .notification-close:hover {
