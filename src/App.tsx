@@ -46,6 +46,7 @@ function App() {
   const [notifications, setNotifications] = useState<any[]>([]);
   const [unreadCount, setUnreadCount] = useState(0);
   const [showNotifications, setShowNotifications] = useState(false);
+  const [showGallery, setShowGallery] = useState(false);
 
   // Application form state
   const [applicationData, setApplicationData] = useState({
@@ -189,6 +190,16 @@ function App() {
     setUnreadCount(0);
   };
 
+  const toggleGallery = () => {
+    setShowGallery(!showGallery);
+  };
+
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
   const handleApplicationSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
@@ -333,6 +344,34 @@ function App() {
             {/* Desktop Navigation */}
             <div className="hidden md:flex items-center space-x-6">
               <button
+                onClick={() => scrollToSection('about')}
+                className="text-gray-600 hover:text-gray-900 transition-colors cursor-pointer"
+                type="button"
+              >
+                Sobre
+              </button>
+              <button
+                onClick={() => scrollToSection('services')}
+                className="text-gray-600 hover:text-gray-900 transition-colors cursor-pointer"
+                type="button"
+              >
+                Serviços
+              </button>
+              <button
+                onClick={() => scrollToSection('benefits')}
+                className="text-gray-600 hover:text-gray-900 transition-colors cursor-pointer"
+                type="button"
+              >
+                Benefícios
+              </button>
+              <button
+                onClick={() => scrollToSection('contact')}
+                className="text-gray-600 hover:text-gray-900 transition-colors cursor-pointer"
+                type="button"
+              >
+                Contacto
+              </button>
+              <button
                 onClick={() => setShowApplicationForm(true)}
                 className="bg-primary-600 text-white px-4 py-2 rounded-lg hover:bg-primary-700 transition-colors font-medium cursor-pointer"
                 type="button"
@@ -453,6 +492,46 @@ function App() {
               <div className="space-y-2">
                 <button
                   onClick={() => {
+                    scrollToSection('about');
+                    setIsMobileMenuOpen(false);
+                  }}
+                  className="block w-full text-left px-4 py-2 text-gray-600 hover:bg-gray-100 cursor-pointer"
+                  type="button"
+                >
+                  Sobre
+                </button>
+                <button
+                  onClick={() => {
+                    scrollToSection('services');
+                    setIsMobileMenuOpen(false);
+                  }}
+                  className="block w-full text-left px-4 py-2 text-gray-600 hover:bg-gray-100 cursor-pointer"
+                  type="button"
+                >
+                  Serviços
+                </button>
+                <button
+                  onClick={() => {
+                    scrollToSection('benefits');
+                    setIsMobileMenuOpen(false);
+                  }}
+                  className="block w-full text-left px-4 py-2 text-gray-600 hover:bg-gray-100 cursor-pointer"
+                  type="button"
+                >
+                  Benefícios
+                </button>
+                <button
+                  onClick={() => {
+                    scrollToSection('contact');
+                    setIsMobileMenuOpen(false);
+                  }}
+                  className="block w-full text-left px-4 py-2 text-gray-600 hover:bg-gray-100 cursor-pointer"
+                  type="button"
+                >
+                  Contacto
+                </button>
+                <button
+                  onClick={() => {
                     setShowApplicationForm(true);
                     setIsMobileMenuOpen(false);
                   }}
@@ -527,18 +606,261 @@ function App() {
               Quero Fazer Parte
             </button>
             <button
-              onClick={() => document.getElementById('models')?.scrollIntoView({ behavior: 'smooth' })}
+              onClick={() => scrollToSection('about')}
               className="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-primary-600 transition-colors cursor-pointer"
               type="button"
             >
-              Ver Modelos
+              Saber Mais
+            </button>
+            <button
+              onClick={toggleGallery}
+              className="bg-primary-700 text-white px-8 py-3 rounded-lg font-semibold hover:bg-primary-800 transition-colors cursor-pointer"
+              type="button"
+            >
+              {showGallery ? 'Ocultar Galeria' : 'Ver Nossas Acompanhantes'}
             </button>
           </div>
         </div>
       </section>
 
+      {/* About Section */}
+      <section id="about" className="py-16 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 font-cormorant">
+              Seja uma Acompanhante
+            </h2>
+            <div className="w-24 h-1 bg-primary-600 mx-auto mb-6"></div>
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+              Galeria Secreta – Mais que uma plataforma, uma irmandade.
+            </p>
+          </div>
+
+          <div className="mb-8">
+            <p className="text-gray-700 text-lg leading-relaxed text-center max-w-4xl mx-auto">
+              Há mais de 3 anos no mercado, a <strong>Galeria Secreta</strong> se tornou referência quando o assunto é <strong>acompanhantes de luxo</strong>. Não somos uma agência tradicional – somos uma <strong>família de mulheres independentes</strong>, comprometidas com o profissionalismo, o respeito e a liberdade de escolha.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="bg-gray-50 rounded-xl p-6">
+              <div className="text-4xl mb-4">👑</div>
+              <h3 className="text-xl font-bold text-gray-900 mb-3">Quem Somos</h3>
+              <p className="text-gray-700 mb-4">
+                Mulheres que decidiram trilhar o caminho da autonomia sexual e financeira com responsabilidade, ética e elegância. Um espaço seguro, discreto e livre de estigmas, onde cada integrante pode crescer, aprender e brilhar.
+              </p>
+              <p className="text-sm text-gray-600 italic">
+                Somos contra a exploração sexual. Não somos cafetinas, nem bordel. Aqui, o poder está nas suas mãos.
+              </p>
+            </div>
+
+            <div className="bg-gray-50 rounded-xl p-6">
+              <div className="text-4xl mb-4">📝</div>
+              <h3 className="text-xl font-bold text-gray-900 mb-3">Requisitos</h3>
+              <ul className="text-gray-700 space-y-2">
+                <li>• 18 anos ou mais</li>
+                <li>• Residir em Moçambique</li>
+                <li>• Educada, discreta e disciplinada</li>
+                <li>• Extrovertida e aberta a novas experiências</li>
+                <li>• Higiene impecável</li>
+                <li>• Decisão consciente e voluntária</li>
+              </ul>
+            </div>
+
+            <div className="bg-gray-50 rounded-xl p-6">
+              <div className="text-4xl mb-4">🚀</div>
+              <h3 className="text-xl font-bold text-gray-900 mb-3">Etapas do Processo</h3>
+              <ol className="text-gray-700 space-y-2">
+                <li>1. Pré-entrevista (chat)</li>
+                <li>2. Entrevista presencial</li>
+                <li>3. Teste prático</li>
+                <li>4. Sessão fotográfica</li>
+                <li>5. Criação do perfil</li>
+                <li>6. Aceitação na associação</li>
+              </ol>
+            </div>
+
+            <div className="bg-gray-50 rounded-xl p-6">
+              <div className="text-4xl mb-4">🎁</div>
+              <h3 className="text-xl font-bold text-gray-900 mb-3">O Que Oferecemos</h3>
+              <ul className="text-gray-700 space-y-2">
+                <li>• Mentoria personalizada</li>
+                <li>• Acesso ao closet exclusivo</li>
+                <li>• Treinamentos e eventos</li>
+                <li>• Curso de inglês com certificado</li>
+              </ul>
+            </div>
+
+            <div className="bg-gray-50 rounded-xl p-6">
+              <div className="text-4xl mb-4">💸</div>
+              <h3 className="text-xl font-bold text-gray-900 mb-3">Ganhos</h3>
+              <p className="text-gray-700 mb-3">Você define seu valor. O pagamento é 100% seu.</p>
+              <ul className="text-gray-700 space-y-1">
+                <li><strong>Iniciante</strong>: 1.500–4.000 MT</li>
+                <li><strong>Experiente</strong>: 4.000–7.000 MT</li>
+                <li><strong>Profissional</strong>: acima de 8.000 MT</li>
+              </ul>
+              <p className="text-sm text-gray-600 italic mt-3">
+                Ajudamos você a encontrar o posicionamento ideal.
+              </p>
+            </div>
+
+            <div className="bg-gray-50 rounded-xl p-6">
+              <div className="text-4xl mb-4">⚠️</div>
+              <h3 className="text-xl font-bold text-gray-900 mb-3">Avisos Importantes</h3>
+              <ul className="text-gray-700 space-y-2">
+                <li>• Não aceitamos menores de idade</li>
+                <li>• Não cobramos taxas</li>
+                <li>• Não somos agência ou bordel</li>
+                <li>• Contato apenas se estiver pronta para o processo seletivo</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Gallery Section */}
+      {showGallery && (
+        <section className="py-16 bg-gray-100">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 font-cormorant">
+                Nossas Acompanhantes
+              </h2>
+              <div className="w-24 h-1 bg-primary-600 mx-auto mb-6"></div>
+              <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+                Conheça nossas modelos profissionais, elegantes e sofisticadas.
+              </p>
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {/* Sample models - you can replace with actual data */}
+              <div className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+                <div className="relative">
+                  <img
+                    src="https://i.postimg.cc/26Hm3Vqw/235028980-1158931497943394-4321605246009855057-n.jpg"
+                    alt="Sofia"
+                    className="w-full h-64 object-cover"
+                  />
+                  <div className="absolute top-4 left-4">
+                    <span className="bg-primary-600 text-white px-3 py-1 rounded-full text-sm font-medium">
+                      Profissional
+                    </span>
+                  </div>
+                </div>
+                <div className="p-6">
+                  <h3 className="text-xl font-bold text-gray-900 mb-2">Sofia</h3>
+                  <div className="flex items-center text-gray-600 text-sm mb-3">
+                    <MapPin className="w-4 h-4 mr-1" />
+                    <span>Nampula • 25 anos</span>
+                  </div>
+                  <p className="text-gray-700 text-sm mb-4">
+                    Modelo profissional com experiência em eventos sociais e corporativos.
+                  </p>
+                  <div className="flex gap-2">
+                    <button
+                      onClick={() => {
+                        const message = encodeURIComponent('Olá Sofia! Vi o seu perfil na Galeria Secreta e gostaria de saber mais sobre os seus serviços.');
+                        window.open(`https://wa.me/258853131185?text=${message}`, '_blank');
+                      }}
+                      className="flex-1 bg-green-600 text-white py-2 px-4 rounded-lg hover:bg-green-700 transition-colors font-medium flex items-center justify-center gap-2"
+                    >
+                      <Phone className="w-4 h-4" />
+                      WhatsApp
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <div className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+                <div className="relative">
+                  <img
+                    src="https://i.postimg.cc/25N7YD0r/123997228-3627243123965219-2863826447702482559-o.jpg"
+                    alt="Isabella"
+                    className="w-full h-64 object-cover"
+                  />
+                  <div className="absolute top-4 left-4">
+                    <span className="bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-medium">
+                      Experiente
+                    </span>
+                  </div>
+                </div>
+                <div className="p-6">
+                  <h3 className="text-xl font-bold text-gray-900 mb-2">Isabella</h3>
+                  <div className="flex items-center text-gray-600 text-sm mb-3">
+                    <MapPin className="w-4 h-4 mr-1" />
+                    <span>Nampula • 28 anos</span>
+                  </div>
+                  <p className="text-gray-700 text-sm mb-4">
+                    Acompanhante experiente com formação em psicologia e paixão por arte.
+                  </p>
+                  <div className="flex gap-2">
+                    <button
+                      onClick={() => {
+                        const message = encodeURIComponent('Olá Isabella! Vi o seu perfil na Galeria Secreta e gostaria de saber mais sobre os seus serviços.');
+                        window.open(`https://wa.me/258853131185?text=${message}`, '_blank');
+                      }}
+                      className="flex-1 bg-green-600 text-white py-2 px-4 rounded-lg hover:bg-green-700 transition-colors font-medium flex items-center justify-center gap-2"
+                    >
+                      <Phone className="w-4 h-4" />
+                      WhatsApp
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <div className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+                <div className="relative">
+                  <img
+                    src="https://i.postimg.cc/qRMnBMyV/143127941-421898882477563-1534463607340270020-o.jpg"
+                    alt="Valentina"
+                    className="w-full h-64 object-cover"
+                  />
+                  <div className="absolute top-4 left-4">
+                    <span className="bg-purple-600 text-white px-3 py-1 rounded-full text-sm font-medium">
+                      Premium
+                    </span>
+                  </div>
+                </div>
+                <div className="p-6">
+                  <h3 className="text-xl font-bold text-gray-900 mb-2">Valentina</h3>
+                  <div className="flex items-center text-gray-600 text-sm mb-3">
+                    <MapPin className="w-4 h-4 mr-1" />
+                    <span>Nampula • 26 anos</span>
+                  </div>
+                  <p className="text-gray-700 text-sm mb-4">
+                    Modelo premium com experiência internacional e fluência em múltiplos idiomas.
+                  </p>
+                  <div className="flex gap-2">
+                    <button
+                      onClick={() => {
+                        const message = encodeURIComponent('Olá Valentina! Vi o seu perfil na Galeria Secreta e gostaria de saber mais sobre os seus serviços.');
+                        window.open(`https://wa.me/258853131185?text=${message}`, '_blank');
+                      }}
+                      className="flex-1 bg-green-600 text-white py-2 px-4 rounded-lg hover:bg-green-700 transition-colors font-medium flex items-center justify-center gap-2"
+                    >
+                      <Phone className="w-4 h-4" />
+                      WhatsApp
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div className="text-center mt-12">
+              <p className="text-gray-600 mb-4">Interessado em conhecer mais sobre nossos serviços?</p>
+              <button
+                onClick={() => scrollToSection('contact')}
+                className="bg-primary-600 text-white px-8 py-3 rounded-lg hover:bg-primary-700 transition-colors font-medium"
+              >
+                Entre em Contacto
+              </button>
+            </div>
+          </div>
+        </section>
+      )}
       {/* Search and Filter Section */}
-      <section className="bg-white py-8 shadow-sm">
+      <section id="models" className="bg-white py-8 shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row gap-4">
             {/* Search */}
@@ -572,7 +894,7 @@ function App() {
       </section>
 
       {/* Models Section */}
-      <section id="models" className="py-16">
+      <section className="py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 font-cormorant">
@@ -609,6 +931,79 @@ function App() {
         </div>
       </section>
 
+      {/* Services Section */}
+      <section id="services" className="py-16 bg-gray-100">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 font-cormorant">
+              Nossos Serviços
+            </h2>
+            <div className="w-24 h-1 bg-primary-600 mx-auto mb-6"></div>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="bg-white rounded-xl p-8 shadow-lg">
+              <div className="text-4xl mb-4">📸</div>
+              <h3 className="text-xl font-bold text-gray-900 mb-4">Modelagem Profissional</h3>
+              <ul className="text-gray-700 space-y-2">
+                <li>• Sessões fotográficas exclusivas</li>
+                <li>• Campanhas publicitárias premium</li>
+                <li>• Eventos corporativos de alto nível</li>
+                <li>• Desfiles de moda exclusivos</li>
+              </ul>
+            </div>
+            
+            <div className="bg-white rounded-xl p-8 shadow-lg">
+              <div className="text-4xl mb-4">🎯</div>
+              <h3 className="text-xl font-bold text-gray-900 mb-4">Desenvolvimento Profissional</h3>
+              <ul className="text-gray-700 space-y-2">
+                <li>• Coaching personalizado</li>
+                <li>• Workshops de etiqueta e postura</li>
+                <li>• Networking com profissionais da indústria</li>
+                <li>• Gestão de carreira especializada</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Benefits Section */}
+      <section id="benefits" className="py-16 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 font-cormorant">
+              Benefícios Exclusivos
+            </h2>
+            <div className="w-24 h-1 bg-primary-600 mx-auto mb-6"></div>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="text-center p-6">
+              <div className="text-4xl mb-4">❤️</div>
+              <h3 className="text-xl font-bold text-gray-900 mb-3">Ambiente Acolhedor</h3>
+              <p className="text-gray-700">
+                Trabalhe num ambiente respeitoso e profissional, onde o seu bem-estar é prioridade.
+              </p>
+            </div>
+            
+            <div className="text-center p-6">
+              <div className="text-4xl mb-4">💰</div>
+              <h3 className="text-xl font-bold text-gray-900 mb-3">Remuneração Competitiva</h3>
+              <p className="text-gray-700">
+                Oferecemos uma das melhores remunerações do mercado, com pagamentos pontuais.
+              </p>
+            </div>
+            
+            <div className="text-center p-6">
+              <div className="text-4xl mb-4">📈</div>
+              <h3 className="text-xl font-bold text-gray-900 mb-3">Crescimento Profissional</h3>
+              <p className="text-gray-700">
+                Oportunidades únicas de desenvolvimento e crescimento na sua carreira.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
       {/* Application Form Modal */}
       {showApplicationForm && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
@@ -894,7 +1289,7 @@ function App() {
       )}
 
       {/* Contact Section */}
-      <section className="bg-gray-900 text-white py-16">
+      <section id="contact" className="bg-gray-900 text-white py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold mb-4 font-cormorant">Contacto</h2>
